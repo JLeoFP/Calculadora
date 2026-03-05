@@ -1,4 +1,4 @@
-﻿Console.Clear();
+﻿//Console.Clear();
 
 Console.WriteLine("--------------------------");
 Console.WriteLine("Bem-vindo à Calculadora Console App!");
@@ -8,19 +8,43 @@ bool continuar = true;
 
 while(continuar)
 {  
-     Console.WriteLine("Escolha a operação que deseja realizar:");
+    Console.WriteLine("Escolha a operação que deseja realizar:");
     Console.WriteLine("1 - soma");
     Console.WriteLine("2 - subtração");
     Console.WriteLine("3 - multiplicação");
     Console.WriteLine("4 - divisão");
+    Console.WriteLine("5 - Operacion tabuada");
     Console.WriteLine("S - sair");
     Console.WriteLine("--------------------------");
 
     
         
     Console.WriteLine("Escolha uma opção: ");
-    string option = Console.ReadLine().ToUpper();
+    string? option = Console.ReadLine()?.ToUpper();              // Uso de ? :  if str > upper, else null.
 
+    if(option == "5")
+    {
+        Console.WriteLine("Digite o numero para a tabuda:");
+            string? strNumTabuada = Console.ReadLine();
+            
+            if (!string.IsNullOrEmpty(strNumTabuada))
+            {
+                decimal numTabuada = Convert.ToDecimal(strNumTabuada);
+                Console.WriteLine($"Tabuada do {numTabuada}:");
+                for (int i = 1; i <= 10; i++)
+                {
+                    Console.WriteLine($"{numTabuada} x {i} = {numTabuada * i}");
+                }
+                
+            }
+            else
+            {
+                Console.WriteLine("Erro: Por favor, insira um valor numérico válido.");
+            }
+            Console.WriteLine("--------------------------");
+        continue;    
+    }
+    
     if(option == "S")
     {   
         Console.WriteLine("Obrigado por usar a Calculadora Console App! Até a próxima!");
@@ -28,14 +52,27 @@ while(continuar)
         break;
     }
 
-    Console.WriteLine("Digite o primeiro número: ");
-    double num1 = Convert.ToDouble(Console.ReadLine());
-
-
+    Console.WriteLine("Digite o primeiro número: ");        
+    string? strNum1 = (Console.ReadLine());         //string? <- string ou null
     Console.WriteLine("Digite o segundo número: ");
-    double num2 = Convert.ToDouble(Console.ReadLine());
+    string? strNum2 = (Console.ReadLine());
 
-    double resultado = 0;
+    //                                       vefica se os valores nao e null
+
+    bool validNum1 = string.IsNullOrEmpty(strNum1);
+    bool validNum2 = string.IsNullOrEmpty(strNum2);
+
+    if(validNum1 == true || validNum2 == true  )
+    {
+        Console.WriteLine("Erro: Por favor, insira valores numéricos válidos.");
+        Console.WriteLine("--------------------------");
+        Console.ReadLine();
+        continue;
+    }
+
+    decimal num1 = Convert.ToDecimal(strNum1);
+    decimal num2 = Convert.ToDecimal(strNum2);
+    decimal resultado = 0;
 
     switch(option)
     {
@@ -67,6 +104,9 @@ while(continuar)
                 Console.WriteLine("--------------------------");
             }
             break;
+        
+        
+
         default:
             Console.WriteLine("Opção inválida. Por favor, escolha uma opção válida.");
             Console.WriteLine("--------------------------");
