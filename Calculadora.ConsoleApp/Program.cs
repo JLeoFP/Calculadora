@@ -1,19 +1,22 @@
 ﻿//Console.Clear();
 
-Console.WriteLine("--------------------------");
-Console.WriteLine("Bem-vindo à Calculadora Console App!");
-Console.WriteLine("--------------------------");
+string[] historicoOpe = new string[100];
+int totalOpe = 0;
 
 bool continuar = true;
 
 while(continuar)
-{  
+{   
+    Console.WriteLine("--------------------------");
+    Console.WriteLine("Bem-vindo à Calculadora Console App!");
+    Console.WriteLine("--------------------------");
     Console.WriteLine("Escolha a operação que deseja realizar:");
     Console.WriteLine("1 - soma");
     Console.WriteLine("2 - subtração");
     Console.WriteLine("3 - multiplicação");
     Console.WriteLine("4 - divisão");
     Console.WriteLine("5 - Operacion tabuada");
+    Console.WriteLine("6 - Historico de operações");
     Console.WriteLine("S - sair");
     Console.WriteLine("--------------------------");
 
@@ -45,11 +48,31 @@ while(continuar)
         continue;    
     }
     
+    if(option == "6")
+    {
+        Console.WriteLine("--------------------------");
+        Console.WriteLine("Historico de operações:");
+        Console.WriteLine("--------------------------");
+        if (totalOpe == 0)
+        {
+            Console.WriteLine("Nenhuma operação realizada ainda.");
+        }
+        else
+        {
+            for (int i = 0; i < totalOpe; i++)
+            {
+                Console.WriteLine(historicoOpe[i]);
+            }
+        }
+      Console.ReadLine();
+      continue;  
+    }
+
     if(option == "S")
     {   
         Console.WriteLine("Obrigado por usar a Calculadora Console App! Até a próxima!");
         continuar = false;
-        break;
+        return;
     }
 
     Console.WriteLine("Digite o primeiro número: ");        
@@ -73,6 +96,7 @@ while(continuar)
     decimal num1 = Convert.ToDecimal(strNum1);
     decimal num2 = Convert.ToDecimal(strNum2);
     decimal resultado = 0;
+    string txtOpe = "";
 
     switch(option)
     {
@@ -80,16 +104,20 @@ while(continuar)
             resultado = num1 + num2;
             Console.WriteLine($"O resultado da soma é: {resultado}");
             Console.WriteLine("--------------------------");
+            txtOpe = $"{num1} + {num2} = {resultado}";
             break;
         case "2":
             resultado = num1 - num2;
             Console.WriteLine($"O resultado da subtração é: {resultado}");
             Console.WriteLine("--------------------------");
+            txtOpe = $"{num1} - {num2} = {resultado}";
+            
             break;
         case "3":
             resultado = num1 * num2;
             Console.WriteLine($"O resultado da multiplicação é: {resultado}");
             Console.WriteLine("--------------------------");
+            txtOpe = $"{num1} * {num2} = {resultado}";
             break;
         case "4":
             if(num2 != 0)
@@ -97,6 +125,7 @@ while(continuar)
                 resultado = num1 / num2;
                 Console.WriteLine($"O resultado da divisão é: {resultado}");
                 Console.WriteLine("--------------------------");
+                txtOpe = $"{num1} / {num2} = {resultado}";
             }
             else
             {
@@ -112,8 +141,11 @@ while(continuar)
             Console.WriteLine("--------------------------");
             break;
     }
-
-
-
-
+    
+    
+    if (totalOpe < historicoOpe.Length)
+    {
+        historicoOpe[totalOpe] = txtOpe;    
+        totalOpe++;
+    }
 }

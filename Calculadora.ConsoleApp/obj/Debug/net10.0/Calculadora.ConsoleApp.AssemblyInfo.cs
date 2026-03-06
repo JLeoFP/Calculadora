@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Calculadora.ConsoleApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0ccd0d17ad77b8ef4178b838452b03b257a40535")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8872ccdade6a49e90f6833e68a979cc4c68fd1c5")]
 [assembly: System.Reflection.AssemblyProductAttribute("Calculadora.ConsoleApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Calculadora.ConsoleApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
